@@ -12,14 +12,23 @@ document.addEventListener("DOMContentLoaded", function () {
     theInterval = setTimeout(function() {
       slides[currentSlide].style.display = "none";
       if(currentSlide < slides.length - 1) {
+        x[currentSlide].classList.add('addRed')
         currentSlide++;
+        console.log(x[currentSlide])
       } else {
         currentSlide = 0;
+        x[currentSlide].classList.remove('addRed')
+
       }
       slides[currentSlide].style.display = "block";
+     
       advance();
+     
+     
 
     }, 3000)
+    x[currentSlide].classList.remove('addRed')
+
   }
 
   // function stopSlides() {
@@ -29,12 +38,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // slide.addEventListener("mouseover", stopSlides)
 
-  slides.forEach(slide => {
+  slides.forEach((_) => {
     let element = document.createElement("div");
     element.innerHTML = `<i class="fas fa-dot-circle"></i>`;
-    dotSection.appendChild(element)
+    dotSection.appendChild(element);
+
+   
+
+   
 
   })
+
+  let x = document.querySelectorAll(".fa-dot-circle");
+  console.log({nodeList: x, index: currentSlide})
+ 
+
 
 
 
