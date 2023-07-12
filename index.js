@@ -2,9 +2,9 @@
   const slides = document.querySelectorAll(".slide");
   const slide = document.querySelector(".slide-group");
   const dotSection = document.querySelector(".dotSection");
-  const chevLeft = document.querySelector(".fa-chevron-left");
-  const chevRight = document.querySelector(".fa-chevron-right");
-  console.log({ chevRight }, { slide });
+  const leftChevron = document.querySelector(".fa-chevron-left");
+  const rightCheveron = document.querySelector(".fa-chevron-right");
+  console.log({ chevRight: rightCheveron }, { slide });
 
   let currentSlide = 0;
   let clear;
@@ -39,7 +39,7 @@
 
   advance(currentSlide);
 
-  chevRight.addEventListener("click", function () {
+  rightCheveron.addEventListener("click", function () {
     clearTimeout(clear);
     slides[currentSlide].style.display = "none";
     dotSection.childNodes[currentSlide].classList.remove("addRed");
@@ -47,21 +47,26 @@
       currentSlide++;
       slides[currentSlide].style.display = "block";
       dotSection.childNodes[currentSlide].classList.add("addRed");
-     
     } else {
       currentSlide = 0;
       slides[currentSlide].style.display = "block";
-    dotSection.childNodes[currentSlide].classList.add("addRed");
+      dotSection.childNodes[currentSlide].classList.add("addRed");
     }
   });
 
-  // chevRight.addEventListener("click", function () {
-  //   if (currentSlide < slides.length - 1) {
-  //     currentSlide++;
-  //   } else {
-  //     currentSlide = 0;
-  //   }
-  //   console.log("josué")
-  //   slides[currentSlide].style.display = "block";
-  // });
+  leftChevron.addEventListener("click", function () {
+    clearTimeout(clear)
+    slides[currentSlide].style.display = "none";
+    dotSection.childNodes[currentSlide].classList.remove("addRed");
+    if (currentSlide <= 0) {
+      console.log(currentSlide)
+      currentSlide = slides.length - 1;
+      slides[currentSlide].style.display = "block";
+      dotSection.childNodes[currentSlide].classList.add("addRed");
+    } else {
+      currentSlide--;
+      slides[currentSlide].style.display = "block";
+      dotSection.childNodes[currentSlide].classList.add("addRed");
+    }
+  });
 })();
