@@ -17,19 +17,11 @@
   });
 
   function advance(index) {
-    const element = slides[index];
-    element.style.display = "none";
-    dotSection.childNodes[index].classList.remove("addRed");
-    const isGreater = index + 1 >= slides.length;
-    if (isGreater) {
-      slides[0].style.display = "block";
-      dotSection.childNodes[0].classList.add("addRed");
-    } else {
-      slides[index + 1].style.display = "block";
-      dotSection.childNodes[index + 1].classList.add("addRed");
-    }
+    slideToNext(index);
+
+   
     clear = setTimeout(() => {
-      if (isGreater) {
+      if (index + 1 >= slides.length) {
         advance(0);
       } else {
         advance(index + 1);
@@ -41,18 +33,17 @@
 
   rightCheveron.addEventListener("click", function () {
     clearTimeout(clear);
-    slides[currentSlide].style.display = "none";
-    dotSection.childNodes[currentSlide].classList.remove("addRed");
-    if (currentSlide < slides.length - 1) {
-      currentSlide++;
-      slides[currentSlide].style.display = "block";
-      dotSection.childNodes[currentSlide].classList.add("addRed");
-    } else {
-      currentSlide = 0;
-      slides[currentSlide].style.display = "block";
-      dotSection.childNodes[currentSlide].classList.add("addRed");
-    }
+    slideToNext(currentSlide);
+   mouseover
+  
   });
+
+  slide.addEventListener("mouseenter", function() {
+    console.log("Josue")
+    clearTimeout(clear)
+  });
+
+  
 
   leftChevron.addEventListener("click", function () {
     clearTimeout(clear)
@@ -68,5 +59,21 @@
       slides[currentSlide].style.display = "block";
       dotSection.childNodes[currentSlide].classList.add("addRed");
     }
+
+
+
+
   });
+  function slideToNext(index) {
+    slides[currentSlide].style.display = "none";
+    dotSection.childNodes[currentSlide].classList.remove("addRed");
+    if (index < slides.length - 1) {
+      currentSlide = index + 1;
+    } else {
+      currentSlide = 0;
+    }
+    slides[currentSlide].style.display = "block";
+    dotSection.childNodes[currentSlide].classList.add("addRed");
+   
+  }
 })();
